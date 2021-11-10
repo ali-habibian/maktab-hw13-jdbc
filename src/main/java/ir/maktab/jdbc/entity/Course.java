@@ -15,6 +15,11 @@ public class Course implements BaseEntity<Integer> {
         this.unit = unit;
     }
 
+    public Course(String name, Integer unit) {
+        this.name = name;
+        this.unit = unit;
+    }
+
     @Override
     public Integer getId() {
         return id;
