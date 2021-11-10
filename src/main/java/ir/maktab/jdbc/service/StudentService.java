@@ -10,11 +10,8 @@ public class StudentService extends AbstractCrudService<Student, Integer> {
         setBaseDao(new StudentDao());
     }
 
+    @Override
     public StudentDao getBaseDao() {
         return (StudentDao) super.getBaseDao();
     }
-
-//    public void find() {
-//        getBaseDao().find();
-//    }
 }
