@@ -17,6 +17,10 @@ public class Major implements BaseEntity<Integer> {
         this.name = name;
     }
 
+    public Major(String name) {
+        this.name = name;
+    }
+
     @Override
     public Integer getId() {
         return id;

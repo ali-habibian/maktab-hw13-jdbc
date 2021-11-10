@@ -10,14 +10,14 @@ import java.util.Map;
 
 public class CourseCommands implements BaseCommand {
 
-    Map<Integer, BaseCommand> commandsMap = new HashMap<>();
+    Map<Integer, BaseCommand> courseCommandsMap = new HashMap<>();
 
     public CourseCommands(CourseService courseService) {
-        commandsMap.put(1, new AddCourseCommand(courseService));
-        commandsMap.put(2, new UpdateCourseCommand(courseService));
-        commandsMap.put(3, new RemoveCourseCommand(courseService));
-        commandsMap.put(4, new GetCourseByIdCommand(courseService));
-        commandsMap.put(5, new GetAllCoursesCommand(courseService));
+        courseCommandsMap.put(1, new AddCourseCommand(courseService));
+        courseCommandsMap.put(2, new UpdateCourseCommand(courseService));
+        courseCommandsMap.put(3, new RemoveCourseCommand(courseService));
+        courseCommandsMap.put(4, new GetCourseByIdCommand(courseService));
+        courseCommandsMap.put(5, new GetAllCoursesCommand(courseService));
     }
 
     @Override
@@ -28,13 +28,13 @@ public class CourseCommands implements BaseCommand {
             Printer.printMessage("2. Update course");
             Printer.printMessage("3. Remove course");
             Printer.printMessage("4. Get course by id");
-            Printer.printMessage("5. Get all course");
+            Printer.printMessage("5. Get all courses");
             Printer.printMessage("6. Back");
             command = Input.getIntInputValue("");
             if (command > 6) {
                 System.out.println("invalid command");
             } else if (command < 6) {
-                commandsMap.get(command).execute();
+                courseCommandsMap.get(command).execute();
             }
         }
     }
