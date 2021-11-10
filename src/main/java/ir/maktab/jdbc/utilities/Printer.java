@@ -16,7 +16,7 @@ public class Printer {
     }
 
     public static void printMessage(String msg) {
-        System.out.print(Color.CYAN);
+        System.out.print(Color.MAGENTA);
         System.out.println(msg);
         System.out.print(Color.RESET);
 
