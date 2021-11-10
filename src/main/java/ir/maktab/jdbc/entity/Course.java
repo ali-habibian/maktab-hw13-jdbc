@@ -20,6 +20,10 @@ public class Course implements BaseEntity<Integer> {
         this.unit = unit;
     }
 
+    public Course(Integer id) {
+        this.id = id;
+    }
+
     @Override
     public Integer getId() {
         return id;
