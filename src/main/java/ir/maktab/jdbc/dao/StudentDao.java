@@ -34,7 +34,7 @@ public class StudentDao implements BaseDao<Student, Integer> {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new ModificationDataException("Can not insert data to db");
+            throw new ModificationDataException("Can not insert student to db");
         } finally {
             try {
                 connection.close();
@@ -53,10 +53,11 @@ public class StudentDao implements BaseDao<Student, Integer> {
             ps.setString(1, newEntity.getName());
             ps.setString(2, newEntity.getFamilyName());
             ps.setInt(3, newEntity.getMajor().getId());
+            ps.setInt(4, id);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new ModificationDataException("Can not update data to db");
+            throw new ModificationDataException("Can not update student to db");
         }
     }
 
@@ -70,7 +71,7 @@ public class StudentDao implements BaseDao<Student, Integer> {
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new ModificationDataException("Can not update data to db");
+            throw new ModificationDataException("Can not delete student from db");
         }
     }
 
@@ -99,7 +100,7 @@ public class StudentDao implements BaseDao<Student, Integer> {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new DataNotFoundException("Can not find data from db");
+            throw new DataNotFoundException("Can not find student in db");
         }
     }
 
@@ -128,7 +129,7 @@ public class StudentDao implements BaseDao<Student, Integer> {
             return students;
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new DataNotFoundException("Can not find data from db");
+            throw new DataNotFoundException("Can not find students in db");
         }
     }
 
