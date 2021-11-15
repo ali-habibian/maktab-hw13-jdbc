@@ -11,7 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class CourseDao implements BaseDao<Course, Integer> {
     private final DataSourceConfig dataSourceConfig = DataSourceConfig.getInstance();
@@ -108,5 +110,25 @@ public class CourseDao implements BaseDao<Course, Integer> {
             e.printStackTrace();
             throw new DataNotFoundException("Can not find courses in db");
         }
+    }
+
+    public Set<Course> loadByStudentId(Integer studentId) {
+        //language=MySQL
+        Set<Course> courses = new HashSet<>();
+        String query = "SELECT course_id_fk FROM maktab.student_course WHERE student_id_fk = ?";
+        try (Connection connection = dataSourceConfig.createDataSource().getConnection();
+             PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setInt(1, studentId);
+            ResultSet courseIdResultSet = ps.executeQuery();
+            while (courseIdResultSet.next()) {
+                int courseId = courseIdResultSet.getInt("course_id_fk");
+                Course course = loadById(courseId);
+                courses.add(course);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DataNotFoundException("Can not find courses in db");
+        }
+        return courses;
     }
 }
